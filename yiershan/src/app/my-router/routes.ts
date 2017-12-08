@@ -1,10 +1,13 @@
-import {Exp1Component} from "../my-animations/exp1/exp1.component"
-
+import {LayoutComponent} from "../layout/layout.component"
 export const routes = [
   {
-    path: 'animations',
-    component: Exp1Component,
+    path: 'app',
+    component:LayoutComponent
   },
-  { path: '**', redirectTo: 'animations' },
-  { path: '', redirectTo: 'animations',pathMatch: 'full' }
+  {
+    path: 'animations',
+    loadChildren:'../my-animations/my-animations.module#MyAnimationsModule'
+  },
+  { path: '**', redirectTo: 'app' },
+  { path: '', redirectTo: 'app',pathMatch: 'full' }
 ];
