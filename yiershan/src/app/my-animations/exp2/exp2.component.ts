@@ -37,4 +37,11 @@ export class Exp2Component implements OnInit {
   GroupShow(){
     this.Group = !this.Group;
   }
+  Callback(f:boolean){
+    if(f){
+      console.log("动画开始");
+    }else {
+      console.log("动画结束");
+    }
+  }
 }

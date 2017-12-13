@@ -98,6 +98,9 @@ export const KeyframesAnimate = trigger('KeyframesAnimate',[
   ]),
 
 ]);
+/*
+并行动画组(Group)演示
+ */
 export const GroupAnimate = trigger('GroupAnimate',[
   //入场动画
   transition(":enter", [
@@ -110,3 +113,69 @@ export const GroupAnimate = trigger('GroupAnimate',[
     ])
   ]),
 ]);
+
+/*
+query选择器演示
+用法和css选择器大致相同
+ */
+export const QueryAnimate = trigger('QueryAnimate',[
+    transition('off=>on', [
+      // 先全部隐藏
+      query('div', style({ opacity: 0 })),
+      // 再执行动画
+      query('.box-top', animate('500ms',keyframes([
+        style({opacity: 0, transform: 'translateY(-400%)', offset: 0}),
+        style({opacity: 1, transform: 'translateY(0)',     offset: 1.0})
+      ]) )),
+      query('.box-center', animate('500ms',keyframes([
+        style({opacity: 0, transform: 'translateX(-400%)', offset: 0}),
+        style({opacity: 1, transform: 'translateX(0)',     offset: 1.0})
+      ]) )),
+      query('.box-foot', animate('500ms',keyframes([
+        style({opacity: 0, transform: 'translateY(400%)', offset: 0}),
+        style({opacity: 1, transform: 'translateY(0)',     offset: 1.0})
+      ]) )),
+      query('h2', animate('500ms',keyframes([
+        style({transform:'scale(0.5)'}),
+        style({transform: 'scale(1)'})
+      ]) )),
+    ]),
+    transition('on=>off', [
+      query('.box-top', animate('500ms',keyframes([
+        style({opacity: 1, transform: 'translateY(0)'}),
+        style({opacity: 0, transform: 'translateY(-400%)'})
+      ]) )),
+      query('.box-center', animate('500ms',keyframes([
+        style({opacity: 1, transform: 'translateX(0)'}),
+        style({opacity: 0, transform: 'translateX(-400%)'})
+      ]) )),
+      query('.box-foot', animate('500ms',keyframes([
+        style({opacity: 1, transform: 'translateY(0)'}),
+        style({opacity: 0, transform: 'translateY(400%)'})
+      ]) )),
+      query('h2', animate('500ms',keyframes([
+        style({transform:'scale(1)'}),
+        style({transform: 'scale(0.5)'})
+      ]) )),
+    ])
+  ]);
+
+
+
+/*
+1、定义一个动画，左右两个状态加上颜色变化更容易理解吧
+2、添加transition * => *
+3、添加transition void => *
+*/
+export const RouteAnimate = trigger('RouteAnimate', [
+  //入场动画
+  transition(":enter", [
+    style({ opacity: 0,transform: 'translate3d(200%,200%,0)'}),
+    animate(500 )
+  ]),
+  // 出场动画
+  transition(":leave", [
+    style({ opacity: 1}),
+    animate(500, style({ opacity: 0,transform: 'translate3d(200%,200%,0)'}))
+  ]),
+  ]);

@@ -1,3 +1,10 @@
-<p>
-  exp3 works!
-</p>
+<h1>动画实例3</h1>
+<div>
+  <button (click)="Change()">切换状态</button>
+</div>
+<div [@QueryAnimate]="State">
+  <h2>Query选择器的使用</h2>
+  <div class="box box-top"></div>
+  <div class="box box-center"></div>
+  <div class="box box-foot"></div>
+</div>

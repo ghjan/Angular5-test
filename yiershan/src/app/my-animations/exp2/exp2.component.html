@@ -22,8 +22,10 @@
 
 <div  style="padding-left: 300px;">
   <div>
-    <button (click)="GroupShow()">{{Keyframes?'隐藏':'显示'}}</button>
+    <button (click)="GroupShow()">{{Group?'隐藏':'显示'}}</button>
   </div>
   <br>
-  <div *ngIf="Group" style="height: 100px;width: 100px;background-color: black; border-radius: 50px;" [@GroupAnimate]="boxState"></div>
+  <div *ngIf="Group" style="height: 100px;width: 100px;background-color: black; border-radius: 50px;"
+       [@GroupAnimate]="boxState" (@GroupAnimate.done)="Callback(false)" (@GroupAnimate.start)="Callback(true)">
+  </div>
 </div>
